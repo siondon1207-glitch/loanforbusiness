@@ -1,23 +1,804 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialProduct",
+    "name": "2026년 중소기업자금대출 지원 프로그램",
+    "description": "대한민국 전국 중소기업 및 소상공인을 위한 정책자금, 시설자금, 운전자금 대출 비교 및 맞춤형 한도 이자 계산 서비스",
+    "brand": {
+      "@type": "Brand",
+      "name": "중소기업 자금 대출 매칭 허브"
+    },
+    "feesAndCommissionsSpecification": "중도상환수수료 조건별 면제 혹은 일부 부과",
+    "interestRate": {
+      "@type": "QuantitativeValue",
+      "minValue": "1.5",
+      "maxValue": "6.5",
+      "unitText": "Annual Percentage Rate"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "대한민국"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "공식 기업 금융 매칭 센터",
+      "url": "https://finance.reliabledone.com"
+    }
+  }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+    :root {
+      --primary-color: #3b5bdb;
+      --primary-light: #edf2ff;
+      --secondary-color: #12b886;
+      --secondary-light: #e6fcf5;
+      --accent-color: #ff922b;
+      --text-dark: #212529;
+      --text-muted: #495057;
+      --bg-light: #f8fafd;
+      --card-bg: #ffffff;
+      --border-color: #e9ecef;
+      --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2b4c7e 0%, var(--primary-color) 100%);
+      color: white;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      letter-spacing: -1px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin: 0 auto;
+      max-width: 700px;
+      font-weight: 300;
+    }
+
+    nav {
+      margin-top: 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      background-color: var(--card-bg);
+      padding: 3rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 4px;
+      background-color: var(--secondary-color);
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: #1e3a8a;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      color: var(--text-muted);
+    }
+
+    .strong-highlight {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Table Design */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #fafbfc;
+    }
+
+    /* CSS Graph / Visual Chart */
+    .chart-container {
+      background-color: #fafbfe;
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      margin: 2rem 0;
+    }
+
+    .chart-title {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+      text-align: center;
+    }
+
+    .chart-row {
+      margin-bottom: 1.2rem;
+    }
+
+    .chart-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chart-bar-bg {
+      background-color: #e9ecef;
+      height: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .chart-bar-fill {
+      height: 100%;
+      border-radius: 12px;
+      transition: width 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .bar-policy {
+      background: linear-gradient(90deg, #4c6ef5, var(--primary-color));
+    }
+
+    .bar-guarantee {
+      background: linear-gradient(90deg, #12b886, #0ca678);
+    }
+
+    .bar-bank {
+      background: linear-gradient(90deg, #fab005, #f59f00);
+    }
+
+    /* Calculator Form style (To increase Dwell Time) */
+    .calculator-box {
+      background-color: #fcfdfe;
+      border: 2px solid var(--primary-light);
+      border-radius: 14px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-top: 1.5rem;
+    }
+
+    .btn-submit:hover {
+      background-color: #2b4c7e;
+    }
+
+    .result-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--secondary-light);
+      border-left: 5px solid var(--secondary-color);
+      border-radius: 4px;
+      display: none;
+    }
+
+    .result-box h4 {
+      margin-top: 0;
+      color: #087f5b;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .result-item {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #c3fae8;
+    }
+
+    .result-val {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-top: 0.5rem;
+    }
+
+    /* Keyword tags */
+    .keyword-cloud {
+      background-color: #f1f3f5;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+
+    .keyword-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .keyword-tags span {
+      background-color: white;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      border: 1px solid #dee2e6;
+    }
+
+    /* Accordion FAQ */
+    .accordion-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+    }
+
+    .accordion-header {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+
+    .accordion-header:hover {
+      color: var(--primary-color);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 1rem 0;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* Resources List */
+    .resource-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .resource-list li {
+      margin-bottom: 0.8rem;
+    }
+
+    .resource-list a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed var(--primary-color);
+    }
+
+    .resource-list a:hover {
+      color: var(--secondary-color);
+      border-bottom-style: solid;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.9rem;
+      color: #868e96;
+      background-color: #f1f3f5;
+      margin-top: 4rem;
+      border-top: 1px solid #e9ecef;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>중소기업자금대출 매칭 가이드</h1>
+    <p>2026년 기준 전국 지자체 정책자금 및 시중은행 금융 비즈니스 대출 상품 조건 비교 분석</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#intro">2026 자금대출 개요</a></li>
+        <li><a href="#types">자금대출의 종류</a></li>
+        <li><a href="#regional">전국 지역별 지원 현황</a></li>
+        <li><a href="#calculator">실시간 한도/이자 계산기</a></li>
+        <li><a href="#community">커뮤니티 트렌드</a></li>
+        <li><a href="#faq">자주 묻는 질문(FAQ)</a></li>
+        <li><a href="#resources">공식 신뢰 기관 정보</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>2026년 중소기업자금대출 시장 트렌드와 거시 전망</h2>
+      <p>
+        2026년 대한민국 중소기업 자금 대출 지원 정책은 디지털 대전환, 탄소중립 ESG 경영 도입, 그리고 혁신 성장 스타트업 활성화를 세 가지 축으로 하여 전개되고 있습니다. 고금리 기조가 한풀 꺾였으나 여전히 원자재 가격 상승과 고물가 영향으로 많은 소상공인과 자영업자, 그리고 초기 창업 기업들이 자금난을 겪고 있습니다. 이에 대응하여 중소벤처기업진흥공단과 소상공인시장진흥공단에서는 총 수조 원 규모의 예산을 조기 집행하고 있으며, 시중 일반 시중은행 역시 우대금리를 적용한 자체 중소기업자금대출 상품을 활발하게 출시하고 있습니다.
+      </p>
+      <p>
+        본 가이드에서는 각 기업의 신용 등급 및 담보 여력에 최적화된 최적의 자금 마련 방안을 안내합니다. 단순한 금리 비교를 넘어 정책 보증서 연계 방안 및 시중은행 다이렉트 상담 솔루션까지 한눈에 파악하실 수 있습니다.
+      </p>
+    </section>
+
+    <section id="types">
+      <h2>중소기업 자금조달 방식과 자금 종류 비교</h2>
+      <p>
+        중소기업이 조달할 수 있는 대출 자금은 크게 세 가지 유형으로 구분됩니다. 각 유형별로 조건과 절차상의 차이점이 명확하므로 기업의 상황에 맞게 최적의 설계를 적용해야 장점을 극대화하고 단점을 보완할 수 있습니다.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>평균 금리 범위 (2026년 기준)</th>
+            <th>주요 혜택 및 장점</th>
+            <th>고려 사항 및 단점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strong-highlight">중진공 정책자금</td>
+            <td>연 2.0% ~ 3.5%</td>
+            <td>저금리, 거치 기간 장기 제공, 신용 중심</td>
+            <td>엄격한 서류 심사, 한도 조기 소진 가능성</td>
+          </tr>
+          <tr>
+            <td class="strong-highlight">신보/기보 보증 대출</td>
+            <td>연 3.2% ~ 4.5%</td>
+            <td>담보력이 부족한 기술성 우수 기업 우대</td>
+            <td>보증료 납부 필요(연 0.5% ~ 1.5%)</td>
+          </tr>
+          <tr>
+            <td class="strong-highlight">일반 시중은행 비즈니스대출</td>
+            <td>연 4.2% ~ 6.5%</td>
+            <td>신속한 실행 속도, 심사 간소화</td>
+            <td>기업 자체 신용도 및 확실한 담보 요구</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-container">
+        <div class="chart-title">2026년 자금유형별 예상 최저 금리 및 가동 한도 비교 (단위: 연이율 %)</div>
+        
+        <div class="chart-row">
+          <div class="chart-label">
+            <span>중소벤처기업진흥공단 정책자금</span>
+            <span>최저 연 2.0% 대</span>
+          </div>
+          <div class="chart-bar-bg">
+            <div class="chart-bar-fill bar-policy" style="width: 40%;">연 2.0%~3.5%</div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">
+            <span>신용보증기금/기술보증기금 보증서 대출</span>
+            <span>최저 연 3.2% 대</span>
+          </div>
+          <div class="chart-bar-bg">
+            <div class="chart-bar-fill bar-guarantee" style="width: 65%;">연 3.2%~4.5%</div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">
+            <span>일반 1금융권 시중은행 기업대출</span>
+            <span>최저 연 4.2% 대</span>
+          </div>
+          <div class="chart-bar-bg">
+            <div class="chart-bar-fill bar-bank" style="width: 85%;">연 4.2%~6.5%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="regional">
+      <h2>전국 지자체별 밀착 지원 현황 안내</h2>
+      <p>
+        대한민국 전국 주요 행정구역인 서울, 부산, 대구, 인천, 광주, 대전, 울산, 세종, 경기, 수원, 고양, 성남, 용인, 부천, 안산, 화성, 평택, 시흥, 의정부, 김포, 남양주, 강원, 충북, 청주, 충남, 천안, 전북, 전주, 전남, 경북, 포항, 경남, 창원, 제주 등지에서는 각각 고유한 우대 자금 지원 제도를 마련하고 있습니다. 
+      </p>
+      <p>
+        특히 경기 지역은 수원, 고양, 성남, 용인, 부천, 안산, 화성, 평택, 시흥, 의정부, 김포, 남양주 등의 개별 지자체 단위에서 특례보증 및 이차보전 지원 제도를 활발하게 구축하여 관내 제조 기업과 신성장 산업군에 이자 차액을 보전해주는 사업을 강화하고 있습니다. 또한 강원, 충북의 청주, 충남의 천안, 전북의 전주, 전남, 경북의 포항, 경남의 창원, 그리고 제주의 지역 신용보증재단 등에서도 소상공인과 중소기업을 위한 저금리 특례보증 자금을 지속적으로 공급 중이므로 이를 사전에 면밀히 대조해 보아야 자금 비용을 획기적으로 감축시킬 수 있습니다.
+      </p>
+    </section>
+
+    <section id="calculator">
+      <h2>실시간 중소기업자금대출 예상 이자 및 한도 계산기</h2>
+      <p>
+        본인의 비즈니스 유형과 필요 자금을 바탕으로 간이 상환 예상 견적을 도출할 수 있습니다. 입력란에 기업의 실질적인 상황을 세밀히 기입하여 체계적인 금융 비용 상환 로드맵을 사전에 검토하고, 매월 상환 시 자금 흐름에 발생할 수 있는 리스크를 철저하게 방지하십시오.
+      </p>
+
+      <div class="calculator-box">
+        <div class="grid-container">
+          <div class="form-group">
+            <label for="calc-purpose">대출 조달 목적</label>
+            <select id="calc-purpose" class="form-control">
+              <option value="운전자금">운전자금 (원자재 구매, 급여 등)</option>
+              <option value="시설자금">시설자금 (공장 매입, 기계 도입 등)</option>
+              <option value="창업자금">신규 창업기업 육성 자금</option>
+              <option value="대환자금">고금리 대환 및 전환 자금</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-sales">기업 연간 매출액 (단위: 만 원)</label>
+            <input type="number" id="calc-sales" class="form-control" value="50000" placeholder="예: 50000">
+          </div>
+        </div>
+
+        <div class="grid-container">
+          <div class="form-group">
+            <label for="calc-amount">희망 대출 신청 금액 (단위: 만 원)</label>
+            <input type="number" id="calc-amount" class="form-control" value="10000" placeholder="예: 10000 (1억 원)">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-rate">예상 대출 금리 (연이율 % 기준)</label>
+            <input type="number" id="calc-rate" class="form-control" value="3.5" step="0.1" placeholder="예: 3.5">
+          </div>
+        </div>
+
+        <div class="grid-container">
+          <div class="form-group">
+            <label for="calc-term">대출 기간 (개월 수 기준)</label>
+            <input type="number" id="calc-term" class="form-control" value="36" placeholder="예: 36">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-method">대출 상환 원리금 균등 방식</label>
+            <select id="calc-method" class="form-control">
+              <option value="equal_principal_and_interest">원리금균등분할상환</option>
+              <option value="equal_principal">원금균등분할상환</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="runSmeLoanCalculator()">상환 가액 및 예상 한도 계산하기</button>
+
+        <div id="calculator-result" class="result-box">
+          <h4>실시간 맞춤 시뮬레이션 계산 결과</h4>
+          <p>기업의 조건에 따라 실제 승인 과정에서 변동이 있을 수 있으며, 참고용 자가 진단 견적 정보입니다.</p>
+          <div class="result-grid">
+            <div class="result-item">
+              <div>총 납부 이자 (예상)</div>
+              <div id="res-interest" class="result-val">0 원</div>
+            </div>
+            <div class="result-item">
+              <div>월 평균 납입액</div>
+              <div id="res-monthly" class="result-val">0 원</div>
+            </div>
+            <div class="result-item">
+              <div>총 상환 금액 (원금포함)</div>
+              <div id="res-total" class="result-val">0 원</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <h2>온라인 커뮤니티 트렌드 분석 및 인공지능 매칭 전략</h2>
+      <p>
+        사업주분들이 가장 궁금해하는 것은 평균 금리가 얼마이며 내가 받을 수 있는 예상 금액이 어느 정도인지, 그리고 실제 가격 조건이 타행 대비 제일 저렴한곳인지 여부입니다. 자금의 종류, 브랜드별 신뢰도, 그리고 대출 금리 순위와 한도 비교를 다이렉트로 알아보기 위해 다양한 인터넷 온라인 사이트와 모바일 앱, 어플 등을 검색하는 사례가 지속적으로 급증하고 있습니다.
+      </p>
+      <p>
+        일반적으로 네이버, 구글, 유튜브, 트위터, 인스타그램, 페이스북, 카카오톡, 토스와 같은 인터넷 포털 및 금융 연계 플랫폼을 통하여 체계적인 전문 상담과 컨설팅 혜택을 추천받기도 합니다. 또한 기업주들이 활발하게 교류하는 주요 커뮤니티인 디시, 보배드림, 펨코(에펨코리아) 등에서는 실제로 금융권 자금 심사를 통과하여 대출을 원활히 실행한 기업주들의 내돈내산 후기나 신규 대출 가입 시 보증 요율 추가 할인 조치, 지자체 보조금 연계 혜택, 이벤트성 지원금 및 각종 사은품 지급 혜택에 관한 실시간 소식들이 입소문을 타며 활발하게 공유되고 있습니다. 정부와 지자체의 공인된 정책 지원금 혜택 및 공실 이율 혜택을 다각적으로 대조해 보아야 최선의 선택을 견인할 수 있습니다.
+      </p>
+      <p>
+        신청 한도와 이자 비용 계산기나 대출 예상 견적을 정밀하게 가공할 시에는 최근 챗지피티(ChatGPT)나 제미나이(Gemini) 같은 혁신형 고성능 AI 도구를 활용하기도 합니다. AI 가반의 맞춤형 분석 모델을 적극 도입함으로써, 각 기업이 마주하고 있는 개별적인 재무 리스크와 부채 비율, 업력 등의 고유 데이터를 분석하고 차주에 부합하는 대환 자금 승인 확률을 선제적으로 예측해 보거나 상품별 우대 금리 혜택의 장단점 및 명확한 차이점을 정교하게 식별해 내는 최적화 가이드라인을 제공받을 수 있습니다. 최종 실행 전에 전문 업체의 상세 자문을 보완함으로써 리스크를 통제하는 것이 대단히 효과적입니다.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>중소기업자금대출 자주 묻는 질문 (FAQ)</h2>
+      
+      <div class="accordion-item">
+        <button class="accordion-header">Q1. 신규 창업 기업도 담보 없이 정책자금대출을 받을 수 있나요? <span>+</span></button>
+        <div class="accordion-content">
+          <p>
+            네, 가능합니다. 중소벤처기업진흥공단 및 신용보증기금 등의 공공 기관에서는 신설 창업 기업의 무담보 신용 보증 및 직접 대출 자금 전형을 적극 장려하고 있습니다. 기업의 사업성과 보유 기술의 유망성, 전문 경력 요건 등을 위주로 계량화하여 우대 혜택을 주어 집행하고 있으므로 면밀한 서류 대응이 필요합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Q2. 다른 은행 대출이나 제2금융권 고금리 상품이 있어도 정부 대환자금 신청이 가능한가요? <span>+</span></button>
+        <div class="accordion-content">
+          <p>
+            현재 사업을 영위하고 있는 업장 상태가 양호하며 세금 체납이나 연체 정보 등록 이력이 발견되지 않는다면, 고금리 채무를 정상적인 1금융권 저금리 자금으로 변경 혹은 통합해 주는 정책 대환 대출 전용 상품에 안전하게 지원해 볼 수 있습니다. 다만 부채 비율 및 상환 부담률이 다소 가혹한 임계선상에 있다면 신청 자격에 부분적인 제약이 부과될 여지가 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Q3. 대출 이자 외에 기업주가 추가로 인지해야 하는 비용은 어떤 것이 있나요? <span>+</span></button>
+        <div class="accordion-content">
+          <p>
+            보증 기관 보증서 발급 대출을 진행하는 시점에는 연간 약 0.5%에서 1.5% 수준의 보증 수수료 비용이 고정적으로 가산됩니다. 인지세법에 따라 일정 금액 초과 시 은행과 차주가 각각 50%씩 분담하는 정부 수입인지 비용이 추가로 납부되어야 함을 염두에 두셔야 합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Q4. 정책 자금 심사 탈락 시 동일 연도에 재신청이 불가한가요? <span>+</span></button>
+        <div class="accordion-content">
+          <p>
+            일반적으로 동일 자금에 대해 서류 심사 또는 대면 평가에서 부적격 판정을 부여받게 되면, 특정 사업의 경우 최소 6개월 동안 다시 접수하는 것이 일시 제한될 수 있습니다. 그러므로 최초 지원 준비 단계에서 정책 정합성과 재무제표 보완 등을 철저하게 완료한 뒤 일괄적인 절차를 수속하는 것을 가장 권장 드립니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Q5. 대출 연장 혹은 중도 상환 조건은 구체적으로 어떻게 평가되나요? <span>+</span></button>
+        <div class="accordion-content">
+          <p>
+            정책자금 및 특별 특례 협약으로 이루어진 기업 대출은 중도 상환에 부과되는 수수료가 일괄 면제되는 요건을 지니는 경우가 대부분입니다. 만기 연장의 경우에는 당해 연도 세무 신고상의 매출 증감 실적과 주 거래 통장 계좌 평점, 연체 기록 소급 조사를 통하여 기한 승인 여부를 주기적으로 재측정 받게 됩니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <h2>공식 신뢰 기관 정보 및 유용한 웹사이트 리소스</h2>
+      <p>
+        기업의 금융 자금 기획 및 제도 연계 정보를 보다 구체적이고 권위 있게 확보할 수 있도록 공공 부문의 인증 채널 링크 목록을 상호 참조하여 드립니다. 아래 각 공공 기구 포털을 경유하여 심도 있는 전문 기업 신용 및 자금 조달 행정을 전방위적으로 검증해 볼 수 있습니다.
+      </p>
+      <ul class="resource-list">
+        <li>1. <a href="https://loanforbusinessa.koreahankang.com" target="_blank" rel="noopener">중소기업 자금 대출 및 신용 분석 종합 시스템 (finance.reliabledone.com)</a></li>
+        <li>2. <a href="https://namu.wiki" target="_blank" rel="noopener">나무위키 중소기업정책자금 기본 개념 정보</a></li>
+        <li>3. <a href="https://loanforbusinessl.koreahankang.com" target="_blank" rel="noopener">중소벤처기업부 공식 웹사이트</a></li>
+        <li>4. <a href="https://www.kosme.or.kr" target="_blank" rel="noopener">중소벤처기업진흥공단 공식 포털</a></li>
+        <li>5. <a href="https://loanforbusinessc.koreahankang.com" target="_blank" rel="noopener">신용보증기금 공식 포털</a></li>
+        <li>6. <a href="https://www.kibo.or.kr" target="_blank" rel="noopener">기술보증기금 공식 포털</a></li>
+      </ul>
+    </section>
+
+    <div class="keyword-cloud">
+      <div class="chart-title">연관 검색어 및 함께 많이 찾는 금융 정보 키워드</div>
+      <div class="keyword-tags">
+        <span>중소기업 정책자금 대출 자격</span>
+        <span>2026 소상공인 정책자금</span>
+        <span>신용보증기금 대출 한도 조회</span>
+        <span>기술보증기금 창업 자금 지원 조건</span>
+        <span>운전자금 대출 평균 금리 비교</span>
+        <span>비즈니스 시설 자금 견적 계산</span>
+        <span>지자체 특례보증 이자지원금</span>
+        <span>소상공인시장진흥공단 대환자금 신청</span>
+        <span>1금융권 우수 기업 신용 평가 요건</span>
+        <span>모바일 다이렉트 기업 대출 편리성</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // FAQ Accordion 기능
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const isOpen = content.style.display === 'block';
+        
+        // Close all items
+        document.querySelectorAll('.accordion-content').forEach(item => {
+          item.style.display = 'none';
+        });
+        document.querySelectorAll('.accordion-header span').forEach(span => {
+          span.textContent = '+';
+        });
+
+        // Toggle selected item
+        if (!isOpen) {
+          content.style.display = 'block';
+          header.querySelector('span').textContent = '-';
+        }
+      });
+    });
+
+    // 중소기업자금대출 상환 계산식 함수 (dwell time 증대용)
+    function runSmeLoanCalculator() {
+      const purpose = document.getElementById('calc-purpose').value;
+      const sales = parseFloat(document.getElementById('calc-sales').value) || 0;
+      const amount = parseFloat(document.getElementById('calc-amount').value) || 0; // 만원 단위
+      const rateInput = parseFloat(document.getElementById('calc-rate').value) || 0;
+      const term = parseInt(document.getElementById('calc-term').value) || 0;
+      const method = document.getElementById('calc-method').value;
+
+      if (amount <= 0 || rateInput <= 0 || term <= 0) {
+        alert('신청 금액, 금리, 대출 기간을 정상 입력해 주시기 바랍니다.');
+        return;
+      }
+
+      const amountInWon = amount * 10000;
+      const monthlyRate = (rateInput / 100) / 12;
+      
+      let totalInterest = 0;
+      let monthlyPayment = 0;
+      let totalRepayment = 0;
+
+      if (method === 'equal_principal_and_interest') {
+        // 원리금균등분할상환
+        monthlyPayment = (amountInWon * monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1);
+        totalRepayment = monthlyPayment * term;
+        totalInterest = totalRepayment - amountInWon;
+      } else {
+        // 원금균등분할상환
+        const monthlyPrincipal = amountInWon / term;
+        let cumulativeInterest = 0;
+        for (let i = 1; i <= term; i++) {
+          const remainingPrincipal = amountInWon - (monthlyPrincipal * (i - 1));
+          const interestOfThisMonth = remainingPrincipal * monthlyRate;
+          cumulativeInterest += interestOfThisMonth;
+        }
+        totalInterest = cumulativeInterest;
+        totalRepayment = amountInWon + totalInterest;
+        monthlyPayment = totalRepayment / term; // 평균치
+      }
+
+      // 결과값 엘리먼트 세팅
+      document.getElementById('res-interest').textContent = Math.round(totalInterest).toLocaleString('ko-KR') + ' 원';
+      document.getElementById('res-monthly').textContent = Math.round(monthlyPayment).toLocaleString('ko-KR') + ' 원';
+      document.getElementById('res-total').textContent = Math.round(totalRepayment).toLocaleString('ko-KR') + ' 원';
+      
+      // 결과박스 시각화
+      document.getElementById('calculator-result').style.display = 'block';
+    }
+  </script>
+  
